@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Add Bootstrap -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Add CSS Stylesheet-->
+    <link href="styles.css" rel="stylesheet">
+    <title>UK Personal Injury Fixed Costs Calculator</title>
+</head>
+
+<body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!--script linking to javascript file-->
+    <script src="scripts.js"></script>
+
+    <h1>EL/PL Costs Calculator</h1>
+    <div>
+        <!--Input for damages-->
+        <input type="number" id="damages" placeholder="Input Damages" autocomplete="off" autofocus>
+    </div>
+    <div>
+        <!--Input for Jurisdiction-->
+        <select name="jurisdiction" id="jurisdiction">
+            <option value="">Select Jurisdiction</option>
+            <option value="eng">England & Wales</option>
+            <option value="scot">Scotland</option>
+            <option value="ni">Northern Ireland</option>
+        </select>
+    </div>
+    <div class="eng">
+            <!--Input for ELPL-->        
+        <div>
+            <select name="elpl" id="elpl">
+                <option value="">Select Claim Type</option>
+                <option value="el">Employers' Liability</option>
+                <option value="pl">Public Liability</option>
+            </select>
+        </div>
+        <!-- london weighting option -->
+        <div>
+            <select name="london-weighting" id="london-weighting" class="cost">
+                <option value="">Apply London Weighting?</option>
+                <option value="yes">Yes</option>
+                <option value="">No</option>
+            </select>
+        </div>
+        <div id=counts>
+            <!--Selections for England & Wales-->
+            <!--TODO- show only when E&W selected in jurisdicton -->
+            <select name="settlement-ew" id="settlement-ew" class="cost">
+                <option value="">Select Settlement Stage</option>
+                <option value="p2" class="eng">Protocol Stage 2</option>
+                <option value="p3d" class="eng">Protocol Stage 3 (defendant wins) </option>
+                <option value="p3c" class="eng">Protocol Stage 3 (paper, claimant wins)</option>
+                <option value="p3o" class="eng">Protocol Stage 3 (oral, claimant wins)</option>
+                <option value="inf" class="eng">Protocol Stage 3 (Infant Approval Hearing)</option>
+                <option value="opi" class="eng">Outside Protocol, Pre-Issue</option>
+                <option value="lpa" class="eng">Litigated - Pre-Allocation</option>
+                <option value="lpl" class="eng">Litigated - Pre-Listing</option>
+                <option value="lpt" class="eng">Litigated - Pre-Trial</option>
+                <option value="lt" class="eng">Litigated - Trial</option>
+            </select>
+        </div>
+    </div>
+
+
+        <div id="scot" class="scot" value="scot">
+            <!--Selections for Scotland-->
+            <!--TODO- show only when Scotland selected in jurisdicton -->
+            <select name="settlement-s" id="settlement-s" class="cost">
+                <option value="">Select Settlement Stage</option>
+                <option value="cpap">Compulsory Pre-Action Protocol</option>
+            </select>
+        </div>
+        <div id="ni" class="ni" value="ni">
+            <!--Selections for Northern Ireland-->
+            <!--TODO- show only when Northern Ireland selected in jurisdicton -->
+            <select name="settlement-ni" id="settlement-ni" class="cost">
+                <option value="">Select Settlement Stage</option>
+                <option value="pre">Pre-Issue</option>
+                <option value="post">Post-Issue</option>
+            </select>
+        </div>
+    </div>
+    <div class="ni">
+        <!--Pre or Post 13/02/17-->
+        <select id="date-ni">
+            <option value="">Select Incident Date</option>
+            <option value="17">From 13/02/2017 to 12/02/2018</option>
+            <option value="18">From 13/02/2018 Onwards</option>
+        </select>
+    </div>
+    <div>
+        <button>Calculate</button>
+    </div>
+    <div>
+        <!--TODO- show results of calculation-->
+        <p id="net"></p>
+        <p id="vat"></p>
+        <p id="gross"></p>
+        <p id="alert"></p>
+    </div>
+</body>
+
+</html>
