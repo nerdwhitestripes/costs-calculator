@@ -2,7 +2,7 @@ function jurisdiction() {
   var country = this.value
   var jurisdiction = document.getElementsByClassName(`${country}`);
   console.log(jurisdiction)
-  for (var i=0;i<jurisdiction.length;i+=1){
+  for (var i = 0; i < jurisdiction.length; i += 1) {
     jurisdiction[i].style.display = 'block';
   }
 

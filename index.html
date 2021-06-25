@@ -37,8 +37,9 @@
             <option value="ni">Northern Ireland</option>
         </select>
     </div>
+    <!--Selections for England & Wales-->
     <div class="eng">
-            <!--Input for ELPL-->        
+        <!--Input for ELPL-->
         <div>
             <select name="elpl" id="elpl">
                 <option value="">Select Claim Type</option>
@@ -54,51 +55,50 @@
                 <option value="">No</option>
             </select>
         </div>
+        <!-- Input different settlement stages -->
         <div id=counts>
-            <!--Selections for England & Wales-->
-            <!--TODO- show only when E&W selected in jurisdicton -->
             <select name="settlement-ew" id="settlement-ew" class="cost">
                 <option value="">Select Settlement Stage</option>
-                <option value="p2" class="eng">Protocol Stage 2</option>
-                <option value="p3d" class="eng">Protocol Stage 3 (defendant wins) </option>
-                <option value="p3c" class="eng">Protocol Stage 3 (paper, claimant wins)</option>
-                <option value="p3o" class="eng">Protocol Stage 3 (oral, claimant wins)</option>
-                <option value="inf" class="eng">Protocol Stage 3 (Infant Approval Hearing)</option>
-                <option value="opi" class="eng">Outside Protocol, Pre-Issue</option>
-                <option value="lpa" class="eng">Litigated - Pre-Allocation</option>
-                <option value="lpl" class="eng">Litigated - Pre-Listing</option>
-                <option value="lpt" class="eng">Litigated - Pre-Trial</option>
-                <option value="lt" class="eng">Litigated - Trial</option>
+                <option value="p2">Protocol Stage 2</option>
+                <option value="p3d">Protocol Stage 3 (defendant wins) </option>
+                <option value="p3c">Protocol Stage 3 (paper, claimant wins)</option>
+                <option value="p3o">Protocol Stage 3 (oral, claimant wins)</option>
+                <option value="inf">Protocol Stage 3 (Infant Approval Hearing)</option>
+                <option value="opi">Outside Protocol, Pre-Issue</option>
+                <option value="lpa">Litigated - Pre-Allocation</option>
+                <option value="lpl">Litigated - Pre-Listing</option>
+                <option value="lpt">Litigated - Pre-Trial</option>
+                <option value="lt">Litigated - Trial</option>
             </select>
         </div>
     </div>
 
 
-        <div id="scot" class="scot" value="scot">
-            <!--Selections for Scotland-->
-            <!--TODO- show only when Scotland selected in jurisdicton -->
-            <select name="settlement-s" id="settlement-s" class="cost">
-                <option value="">Select Settlement Stage</option>
-                <option value="cpap">Compulsory Pre-Action Protocol</option>
-            </select>
-        </div>
-        <div id="ni" class="ni" value="ni">
-            <!--Selections for Northern Ireland-->
-            <!--TODO- show only when Northern Ireland selected in jurisdicton -->
+    <!--Selections for Scotland-->
+    <div id="scot" class="scot" value="scot">
+        <select name="settlement-s" id="settlement-s" class="cost">
+            <option value="">Select Settlement Stage</option>
+            <option value="cpap">Compulsory Pre-Action Protocol</option>
+        </select>
+    </div>
+    <!--Selections for Northern Ireland-->
+    <div class="ni">
+        <div id="ni" value="ni">
             <select name="settlement-ni" id="settlement-ni" class="cost">
                 <option value="">Select Settlement Stage</option>
                 <option value="pre">Pre-Issue</option>
                 <option value="post">Post-Issue</option>
             </select>
         </div>
-    </div>
-    <div class="ni">
-        <!--Pre or Post 13/02/17-->
-        <select id="date-ni">
-            <option value="">Select Incident Date</option>
-            <option value="17">From 13/02/2017 to 12/02/2018</option>
-            <option value="18">From 13/02/2018 Onwards</option>
-        </select>
+
+        <div>
+            <!--Pre or Post 13/02/17-->
+            <select id="date-ni">
+                <option value="">Select Incident Date</option>
+                <option value="17">From 13/02/2017 to 12/02/2018</option>
+                <option value="18">From 13/02/2018 Onwards</option>
+            </select>
+        </div>
     </div>
     <div>
         <button>Calculate</button>
