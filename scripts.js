@@ -5,7 +5,8 @@ function jurisdiction() {
   //  obtain name of country selected 
   var country = this.value
   // iterate over countryList and display elements if it matches 
-  for (i = 0; i < countryList.length; i++) {
+  // eslint-disable-next-line id-length
+  for (let i = 0; i < countryList.length; i++) {
     if (countryList[i] == country) {
       var countryShow = Array.from(document.getElementsByClassName(`${country}`));
       countryShow.forEach(element => (element.style.display = "block"));
@@ -22,10 +23,12 @@ function calculate() {
   // capture values of all relevant variables. 
   var damages = document.querySelector('#damages').value;
   var jurisdiction = document.querySelector('#jurisdiction option:checked').value;
-  damages = window[jurisdiction](damages);
+  // run function based on jurisdiction, passing through the damages 
+  window[jurisdiction](damages);
 }
 
 // ENGLAND & WALES FUNCTION CALCULATOR 
+// eslint-disable-next-line no-unused-vars
 function eng(damages) {
   var stage = document.querySelector('#settlement-ew option:checked').value;
   var elpl = document.querySelector('#elpl option:checked').value;
@@ -42,18 +45,19 @@ function eng(damages) {
     document.querySelector("#alert").innerHTML = "";
   }
   // pass damages through selected stage and return value for costs 
-  value = window[stage](damages, elpl);
+  let value = window[stage](damages, elpl);
   //Apply London Weighting option 
   let lon = document.querySelector('#london-weighting option:checked').value;
   if (lon == "yes") {
     value = value + ((value / 100) * 12.5);
   }
-  value = total(value);
+  total(value);
 }
 
 
 // E&W FUNCTIONS 
 // function for protocol stage 2
+// eslint-disable-next-line no-unused-vars
 function p2(damages) {
   var value;
   if (damages >= 1000 && damages <= 10000) {
@@ -65,6 +69,7 @@ function p2(damages) {
   return value;
 }
 // stage 3 defendant wins 
+// eslint-disable-next-line no-unused-vars
 function p3d(damages) {
   var value;
   if (damages >= 1000 && damages <= 10000) {
@@ -76,6 +81,7 @@ function p3d(damages) {
   return value;
 }
 // stage 3 claimant wins (paper)
+// eslint-disable-next-line no-unused-vars
 function p3c(damages) {
   var value;
   if (damages >= 1000 && damages <= 10000) {
@@ -87,6 +93,7 @@ function p3c(damages) {
   return value;
 }
 // stage 3 claimant wins (oral)
+// eslint-disable-next-line no-unused-vars
 function p3o(damages) {
   var value;
   if (damages >= 1000 && damages <= 10000) {
@@ -98,6 +105,7 @@ function p3o(damages) {
   return value;
 }
 // stage 3 Infant Approval Hearing
+// eslint-disable-next-line no-unused-vars
 function inf(damages) {
   var value;
   if (damages >= 1000 && damages <= 10000) {
@@ -109,6 +117,7 @@ function inf(damages) {
   return value;
 }
 // Outside Protocol Pre-Issue & begin handling el/pl option differences
+// eslint-disable-next-line no-unused-vars
 function opi(damages, elpl) {
   var value;
   if (damages >= 1000 && damages <= 5000) {
@@ -133,6 +142,7 @@ function opi(damages, elpl) {
   return value;
 }
 // Litigated, Pre-Allocation 
+// eslint-disable-next-line no-unused-vars
 function lpa(damages, elpl) {
   var value;
   if (elpl == "el") {
@@ -143,6 +153,7 @@ function lpa(damages, elpl) {
   return value;
 }
 // Litigated, Pre-Listing
+// eslint-disable-next-line no-unused-vars
 function lpl(damages, elpl) {
   var value;
   if (elpl == "el") {
@@ -153,6 +164,7 @@ function lpl(damages, elpl) {
   return value;
 }
 // Litigated, pre-trial 
+// eslint-disable-next-line no-unused-vars
 function lpt(damages, elpl) {
   var value;
   if (elpl == "el") {
@@ -163,6 +175,7 @@ function lpt(damages, elpl) {
   return value;
 }
 // Trial 
+// eslint-disable-next-line no-unused-vars
 function lt(damages, elpl) {
   var value;
   var advocate;
@@ -184,8 +197,9 @@ function lt(damages, elpl) {
 }
 
 // FUNCTION FOR SCOTTISH COMPULSORY ACTION PROTOCOL CALCULATOR
+// eslint-disable-next-line no-unused-vars
 function scot(damages) {
-  value = 546;
+  let value = 546;
   // warning message if over 25k  
   if (damages > 25000) {
     document.querySelector("#alert").innerHTML = "Costs May Fall Out Of Compulsory Pre-Action Protocol";
@@ -233,9 +247,11 @@ function scot(damages) {
 }
 
 // FUNCTION FOR NI SCALE COSTS 
+// eslint-disable-next-line no-unused-vars
 function ni(damages) {
   var stage = document.querySelector('#ni option:checked').value;
   var date = document.querySelector('#date-ni option:checked').value;
+  let value;
   // Damages does not exceed £500
   if (damages <= 500) {
     if (date == "17") {
@@ -353,6 +369,5 @@ function total(value) {
 // add event listener for whole of doc to be loaded
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#jurisdiction').onchange = jurisdiction;
-  document.querySelector('button').onclick = calculate;
-});
+  document.querySelector('button').onclick = calculate; });
 
