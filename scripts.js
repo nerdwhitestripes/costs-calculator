@@ -1,33 +1,20 @@
+// List of countries to iterate over. 
+const countryList = ["eng", "scot", "ni"];
+
 function jurisdiction() {
+  //  obtain name of country selected 
   var country = this.value
-  var jurisdiction = document.getElementsByClassName(`${country}`);
-  console.log(jurisdiction)
-  for (var i = 0; i < jurisdiction.length; i += 1) {
-    jurisdiction[i].style.display = 'block';
-  }
-
-
-
-  // this.value obtains the value of whatever is selected 
-  var country = this.value;
-  console.log(country);
-
-  // var elems = document.getElementsByClassName(`${country}`);
-  // for (var i=0;i<elems.length;i+=1){
-  //   elems[i].style.display = 'block';
-  // }
-  // collate list of countries via country class
-  // var countries = document.querySelectorAll(".country");
-  // // iterate through list and display matching element
-  // for (i = 0; i < countries.length; i++) {
-  //   if (countries[i].id == country) {
-  //     document.getElementById(countries[i].id).style.display = "block";
-  //   }
-  //   // hide block if it gets deselected
-  //   else {
-  //     document.getElementById(countries[i].id).style.display = "none";
-  //   }
-  // }
+  // iterate over countryList and display elements if it matches 
+  for (i = 0; i < countryList.length; i++) {
+    if (countryList[i] == country) {
+      var countryShow = Array.from(document.getElementsByClassName(`${country}`));
+      countryShow.forEach(element => (element.style.display = "block"));
+    }
+    else {
+      var countryHide = Array.from(document.getElementsByClassName(`${countryList[i]}`));
+      countryHide.forEach(element => (element.style.display = "none"));
+    }
+  } 
 }
 
 //Function selector based on jurisdiction 
