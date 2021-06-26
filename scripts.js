@@ -28,6 +28,7 @@ function calculate() {
 // ENGLAND & WALES FUNCTION CALCULATOR 
 function eng(damages) {
   var stage = document.querySelector('#settlement-ew option:checked').value;
+  var elpl = document.querySelector('#elpl option:checked').value;
   // Alert if small claims or multitrack risk 
   if (damages <= 999) {
     document.querySelector("#alert").innerHTML = "Small Claims Costs Apply";
@@ -41,36 +42,7 @@ function eng(damages) {
     document.querySelector("#alert").innerHTML = "";
   }
   // pass damages through selected stage and return value for costs 
-  if (stage == "p2") {
-    value = p2(damages);
-  }
-  if (stage == "p3d") {
-    value = p3d(damages);
-  }
-  if (stage == "p3c") {
-    value = p3c(damages);
-  }
-  if (stage == "p3o") {
-    value = p3o(damages);
-  }
-  if (stage == "inf") {
-    value = inf(damages);
-  }
-  if (stage == "opi") {
-    value = opi(damages);
-  }
-  if (stage == "lpa") {
-    value = lpa(damages);
-  }
-  if (stage == "lpl") {
-    value = lpl(damages);
-  }
-  if (stage == "lpt") {
-    value = lpt(damages);
-  }
-  if (stage == "lt") {
-    value = lt(damages);
-  }
+  value = window[stage](damages, elpl);
   //Apply London Weighting option 
   let lon = document.querySelector('#london-weighting option:checked').value;
   if (lon == "yes") {
@@ -137,8 +109,7 @@ function inf(damages) {
   return value;
 }
 // Outside Protocol Pre-Issue & begin handling el/pl option differences
-function opi(damages) {
-  var elpl = document.querySelector('#elpl option:checked').value;
+function opi(damages, elpl) {
   var value;
   if (damages >= 1000 && damages <= 5000) {
     value = 950 + ((damages / 100) * 17.5);
@@ -162,8 +133,7 @@ function opi(damages) {
   return value;
 }
 // Litigated, Pre-Allocation 
-function lpa(damages) {
-  var elpl = document.querySelector('#elpl option:checked').value;
+function lpa(damages, elpl) {
   var value;
   if (elpl == "el") {
     value = 2630 + ((damages / 100) * 20);
@@ -173,8 +143,7 @@ function lpa(damages) {
   return value;
 }
 // Litigated, Pre-Listing
-function lpl(damages) {
-  var elpl = document.querySelector('#elpl option:checked').value;
+function lpl(damages, elpl) {
   var value;
   if (elpl == "el") {
     value = 3350 + ((damages / 100) * 25);
@@ -184,20 +153,17 @@ function lpl(damages) {
   return value;
 }
 // Litigated, pre-trial 
-function lpt(damages) {
-  var elpl = document.querySelector('#elpl option:checked').value;
+function lpt(damages, elpl) {
   var value;
   if (elpl == "el") {
     value = 4280 + ((damages / 100) * 30);
-
   } else if (elpl == "pl") {
     value = 3790 + ((damages / 100) * 27.5);
   }
   return value;
 }
 // Trial 
-function lt(damages) {
-  var elpl = document.querySelector('#elpl option:checked').value;
+function lt(damages, elpl) {
   var value;
   var advocate;
   if (damages <= 3000) {
@@ -364,25 +330,15 @@ function ni(damages) {
   } else {
     document.querySelector("#alert").innerHTML = "";
   }
-  // transfer to scale if pre-litigation 
+  // apply relevant scale reduction if pre-litigation checked. 
   if (stage == "pre") {
     if (damages <= 5000) {
-      value = twoThirds(value);
+      value = ((value / 3) * 2);
     } else if (damages > 5000) {
-      value = threeQuarters(value);
+      value = ((value / 4) * 3);
     }
   }
   return total(value);
-}
-
-function twoThirds(value) {
-  value = ((value / 3) * 2);
-  return value;
-}
-
-function threeQuarters(value) {
-  value = ((value / 4) * 3);
-  return value;
 }
 
 // FUNCTION TO DISPLAY NET,VAT,GROSS AMOUNTS 
