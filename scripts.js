@@ -22,13 +22,7 @@ function calculate() {
   // capture values of all relevant variables. 
   var damages = document.querySelector('#damages').value;
   var jurisdiction = document.querySelector('#jurisdiction option:checked').value;
-  if (jurisdiction == "eng") {
-    damages = eng(damages);
-  } else if (jurisdiction == "scot") {
-    damages = scot(damages);
-  } else if (jurisdiction == "ni") {
-    damages = ni(damages);
-  }
+  damages = window[jurisdiction](damages);
 }
 
 // ENGLAND & WALES FUNCTION CALCULATOR 
