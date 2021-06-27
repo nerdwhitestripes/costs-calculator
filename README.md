@@ -1,4 +1,4 @@
-#** UK Personal Injury Costs Calculator**
+# UK Personal Injury Costs Calculator
 #### Video Demo:  <URL HERE>
 #### Description:
 My Name is Kam Cheng and I live in Manchester, England. I work in the field of insurance and specifically on personal injury claims made against businesses and individuals in the UK. 
