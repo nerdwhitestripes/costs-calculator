@@ -21,14 +21,10 @@ const countryList = ["eng", "scot", "ni"];
 function jurisdiction() {
   //  obtain name of country selected 
   var country = this.value
-  if (country === "") {
-    document.querySelector("#alert").innerHTML = "Please Input Jurisdiction";
-    return;
-  }
-  else {
+  // iterate over countryList and hide alert 
+  if (country !== "") {
     document.querySelector("#alert").innerHTML = "";
   }
-  // iterate over countryList and display elements if it matches 
   // eslint-disable-next-line id-length
   for (let i = 0; i < countryList.length; i++) {
     if (countryList[i] === country) {
@@ -434,10 +430,6 @@ function ni(damages) {
   }
   return total(value);
 }
-
-  // let decimals = document.querySelector('#damages').value;
-  // console.log(decimals); 
-// }
 
 // FUNCTION TO DISPLAY NET,VAT,GROSS AMOUNTS 
 function total(value) {
