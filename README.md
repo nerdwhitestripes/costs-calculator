@@ -31,14 +31,14 @@ During my cs50 course I had programmed websites using both javascript and python
 
 You will note that the file contains the bulk of my work, and took the most of my time to code. The focus here is to run the calculations and to make the website more dynamic through use of manipulation of html and css styles. 
 
-** calculator ** 
+**calculator** 
 After taking the values provided by the user, the website will run the values through the numerous functions available, returning the results on the same page. 
 
 You will note that there is a great number of functions (especially for the E&W jursidiction), due to the different calculations required depending on which options had been selected. In order to pass the user values through these functions as efficiently as possible, I input the names of many these functions to be the same as the html.value. This way I could pass those values through to the relevant function, by manipulating the html.value (which was a string) and passing it through the window[html.value](). 
 
 I also carried our some error checking, to ensure that the initial damages value was limited to 2 decimal places (as it was monetary). Also, if certain options had been left unselected, an 'alert' message would show up. 
 
-** dynamic html/ccs**
+**dynamic html/ccs**
 As I wanted to focus all my javascript code in this file rather than having it on html, I relied on event listeners to run my code. 
 
 This also helped me to make a more dynamic website, as I was able to modify the html/css elements depending on the actions of the user. 
