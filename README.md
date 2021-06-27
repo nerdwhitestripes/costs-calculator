@@ -1,4 +1,4 @@
-# UK Personal Injury Costs Calculator
+# **UK Personal Injury Costs Calculator**
 #### Video Demo:  <URL HERE>
 #### Description:
 My Name is Kam Cheng and I live in Manchester, England. I work in the field of insurance and specifically on personal injury claims made against businesses and individuals in the UK. 
@@ -31,7 +31,7 @@ During my cs50 course I had programmed websites using both javascript and python
 
 You will note that the file contains the bulk of my work, and took the most of my time to code. The focus here is to run the calculations and to make the website more dynamic through use of manipulation of html and css styles. 
 
-**calculator** 
+**Calculator** 
   
 After taking the values provided by the user, the website will run the values through the numerous functions available, returning the results on the same page. 
 
@@ -39,7 +39,7 @@ You will note that there is a great number of functions (especially for the E&W 
 
 I also carried our some error checking, to ensure that the initial damages value was limited to 2 decimal places (as it was monetary). Also, if certain options had been left unselected, an 'alert' message would show up. 
 
-**dynamic html/ccs**
+**Dynamic html/ccs**
   
 As I wanted to focus all my javascript code in this file rather than having it on html, I relied on event listeners to run my code. 
 
