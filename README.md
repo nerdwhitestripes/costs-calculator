@@ -35,7 +35,7 @@ You will note that the file contains the bulk of my work, and took the most of m
   
 After taking the values provided by the user, the website will run the values through the numerous functions available, returning the results on the same page. 
 
-You will note that there is a great number of functions (especially for the E&W jursidiction), due to the different calculations required depending on which options had been selected. In order to pass the user values through these functions as efficiently as possible, I input the names of many these functions to be the same as the html.value. This way I could pass those values through to the relevant function, by manipulating the html.value (which was a string) and passing it through the window[html.value](). 
+You will note that there is a great number of functions (especially for the E&W jursidiction), due to the different calculations required depending on which options had been selected. In order to pass the user values through these functions as efficiently as possible, I input the names of many these functions to be the same as the html.value. This way I could pass those values through to the relevant function, by manipulating the html.value (which was a string) and passing it through the ```window[html.value]();```. 
 
 I also carried our some error checking, to ensure that the initial damages value was limited to 2 decimal places (as it was monetary). Also, if certain options had been left unselected, an 'alert' message would show up. 
 
