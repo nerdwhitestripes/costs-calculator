@@ -23,7 +23,10 @@ function jurisdiction() {
   var country = this.value
   // iterate over countryList and hide alert 
   if (country !== "") {
-    document.querySelector("#alert").innerHTML = "";
+    document.querySelector("#alert").innerHTML = "";  
+    document.querySelector("#net").innerHTML = "";
+    document.querySelector("#vat").innerHTML = "";
+    document.querySelector("#gross").innerHTML = "";
   }
   // eslint-disable-next-line id-length
   for (let i = 0; i < countryList.length; i++) {
