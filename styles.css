@@ -1,27 +1,77 @@
-body {
+html, body {
+    height: 100%;
+    background-image: url('lady_justice.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
     text-align: center;
-    padding: 10px;
-    margin: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    padding: 60px;
+    text-align: center;
+    background: #03171f;
+    color: rgb(196, 196, 196);
+    font-size: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #03171f;
+    color: rgb(196, 196, 196);
+    direction: ltr;
+}
+
+.form-check-input {
+    align-items: center;
 }
 
 div {
-    margin: 10px;
+    margin: 25px;
+    opacity: 0.95;
 }
 
+select {
+    text-align-last: center;
+}
 
+.main {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    padding: 100px 0;
+}
 
-.country {
+#damages {
+    max-width: 300px;
+    text-align: center;
+}
+
+#alert {
+    color: red;
+    font-weight: bold;
+}
+
+.form-select {
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.eng, .ni, .scot {
     display:none;
 }
 
-.eng {
-    display:none;
-}
-
-.ni {
-    display:none;
-}
-
-.scot {
-    display:none;
+.results {
+    font-size:large;
+    background-color: white;
+    margin: auto;
+    width: 40%;
 }

@@ -1,13 +1,37 @@
+// add event listener for whole of doc to be loaded
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelector('#jurisdiction').onchange = jurisdiction;
+  document.querySelector('#damages').oninput = decimals;
+  document.querySelector('button').onclick = calculate; });
+
+// restrict damages to 2 decimal places. 
+function decimals() {
+  var decimal = document.querySelector('#damages');
+  var checker = decimal.value;
+  if (checker.indexOf(".") >= 0) {
+    decimal.value = checker.substr(0, checker.indexOf(".")) + checker.substr(checker.indexOf("."), 3);
+  } else {
+    decimal.value = checker;
+  }
+}    
+
 // List of countries to iterate over. 
 const countryList = ["eng", "scot", "ni"];
 
 function jurisdiction() {
   //  obtain name of country selected 
   var country = this.value
+  if (country === "") {
+    document.querySelector("#alert").innerHTML = "Please Input Jurisdiction";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
   // iterate over countryList and display elements if it matches 
   // eslint-disable-next-line id-length
   for (let i = 0; i < countryList.length; i++) {
-    if (countryList[i] == country) {
+    if (countryList[i] === country) {
       var countryShow = Array.from(document.getElementsByClassName(`${country}`));
       countryShow.forEach(element => (element.style.display = "block"));
     }
@@ -22,7 +46,22 @@ function jurisdiction() {
 function calculate() {
   // capture values of all relevant variables. 
   var damages = document.querySelector('#damages').value;
+  if (damages === "" || damages === "0") {
+    document.querySelector("#alert").innerHTML = "Please Input Damages";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
+  // // display error message if jurisdiction not selected. 
   var jurisdiction = document.querySelector('#jurisdiction option:checked').value;
+  if (jurisdiction === "") {
+    document.querySelector("#alert").innerHTML = "Please Input Jurisdiction";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
   // run function based on jurisdiction, passing through the damages 
   window[jurisdiction](damages);
 }
@@ -32,6 +71,22 @@ function calculate() {
 function eng(damages) {
   var stage = document.querySelector('#settlement-ew option:checked').value;
   var elpl = document.querySelector('#elpl option:checked').value;
+  // alert if settlement stage not selected 
+  if (stage === "") {
+    document.querySelector("#alert").innerHTML = "Please Select Settlement Stage";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
+  // alert if elpl not selected 
+  if (elpl === "") {
+    document.querySelector("#alert").innerHTML = "Please Select Claim Type";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
   // Alert if small claims or multitrack risk 
   if (damages <= 999) {
     document.querySelector("#alert").innerHTML = "Small Claims Costs Apply";
@@ -40,7 +95,7 @@ function eng(damages) {
     document.querySelector("#gross").innerHTML = "";
     return;
   } else if (damages > 25000) {
-    document.querySelector("#alert").innerHTML = "Costs may fall out of Fixed Costs Regime";
+    document.querySelector("#alert").innerHTML = "Damages Exceeds Fixed Costs Regime";
   } else {
     document.querySelector("#alert").innerHTML = "";
   }
@@ -48,7 +103,15 @@ function eng(damages) {
   let value = window[stage](damages, elpl);
   //Apply London Weighting option 
   let lon = document.querySelector('#london-weighting option:checked').value;
-  if (lon == "yes") {
+  // alert if london weighting option not selected 
+  if (lon === "") {
+    document.querySelector("#alert").innerHTML = "Select London Weighting";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
+  if (lon === "yes") {
     value = value + ((value / 100) * 12.5);
   }
   total(value);
@@ -123,18 +186,18 @@ function opi(damages, elpl) {
   if (damages >= 1000 && damages <= 5000) {
     value = 950 + ((damages / 100) * 17.5);
   } else if (damages > 5000 && damages <= 10000) {
-    if (elpl == "el") {
+    if (elpl === "el") {
       damages = (damages - 5000);
       value = 1855 + ((damages / 100) * 12.5);
-    } else if (elpl == "pl") {
+    } else if (elpl === "pl") {
       damages = (damages - 5000);
       value = 1855 + ((damages / 100) * 10);
     }
   } else if (damages > 10000 && damages <= 25000) {
-    if (elpl == "el") {
+    if (elpl === "el") {
       damages = (damages - 10000);
       value = 2500 + ((damages / 100) * 10);
-    } else if (elpl == "pl") {
+    } else if (elpl === "pl") {
       damages = (damages - 10000);
       value = 2370 + ((damages / 100) * 10);
     }
@@ -145,9 +208,9 @@ function opi(damages, elpl) {
 // eslint-disable-next-line no-unused-vars
 function lpa(damages, elpl) {
   var value;
-  if (elpl == "el") {
+  if (elpl === "el") {
     value = 2630 + ((damages / 100) * 20);
-  } else if (elpl == "pl") {
+  } else if (elpl === "pl") {
     value = 2450 + ((damages / 100) * 17.5);
   }
   return value;
@@ -156,9 +219,9 @@ function lpa(damages, elpl) {
 // eslint-disable-next-line no-unused-vars
 function lpl(damages, elpl) {
   var value;
-  if (elpl == "el") {
+  if (elpl === "el") {
     value = 3350 + ((damages / 100) * 25);
-  } else if (elpl == "pl") {
+  } else if (elpl === "pl") {
     value = 3065 + ((damages / 100) * 22.5);
   }
   return value;
@@ -167,9 +230,9 @@ function lpl(damages, elpl) {
 // eslint-disable-next-line no-unused-vars
 function lpt(damages, elpl) {
   var value;
-  if (elpl == "el") {
+  if (elpl === "el") {
     value = 4280 + ((damages / 100) * 30);
-  } else if (elpl == "pl") {
+  } else if (elpl === "pl") {
     value = 3790 + ((damages / 100) * 27.5);
   }
   return value;
@@ -188,9 +251,9 @@ function lt(damages, elpl) {
   } else if (damages > 15000) {
     advocate = 1705;
   }
-  if (elpl == "el") {
+  if (elpl === "el") {
     value = 4280 + ((damages / 100) * 30) + advocate;
-  } else if (elpl == "pl") {
+  } else if (elpl === "pl") {
     value = 3790 + ((damages / 100) * 27.5) + advocate;
   }
   return value;
@@ -251,92 +314,107 @@ function scot(damages) {
 function ni(damages) {
   var stage = document.querySelector('#ni option:checked').value;
   var date = document.querySelector('#date-ni option:checked').value;
+  // error messages if stage or date not selected 
+  if (stage === "") {
+    document.querySelector("#alert").innerHTML = "Please Select Settlement Stage";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }
+  if (date === "") {
+    document.querySelector("#alert").innerHTML = "Please Select Incident Date";
+    return;
+  }
+  else {
+    document.querySelector("#alert").innerHTML = "";
+  }    
   let value;
   // Damages does not exceed £500
   if (damages <= 500) {
-    if (date == "17") {
+    if (date === "17") {
       value = 250;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 254;
     }
   }
   // Damages between £500 - £1000
   else if (damages > 500 && damages <= 1000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 546;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 554;
     }
   }
   // Damages between 1000 - 2500
   else if (damages > 1000 && damages <= 2500) {
-    if (date == "17") {
+    if (date === "17") {
       value = 1153;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 1170;
     }
   }
   // Damages between 2500 - 5000
   else if (damages > 2500 && damages <= 5000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 1638;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 1662;
     }
   }
   // Damages between 5k - 7.5k
   else if (damages > 5000 && damages <= 7500) {
-    if (date == "17") {
+    if (date === "17") {
       value = 2123;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 2155;
     }
   }
   // Damages between 7.5 - 10k
   else if (damages > 7500 && damages <= 10000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 2427;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 2463;
     }
   }
   // Damages between 10k - 12.5k
   else if (damages > 10000 && damages <= 12500) {
-    if (date == "17") {
+    if (date === "17") {
       value = 2669;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 2709;
     }
   }
   // Damages between 12.5 - 15k
   else if (damages > 12500 && damages <= 15000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 2912;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 2955;
     }
   }
   // Damages between 15k - 20k
   else if (damages > 15000 && damages <= 20000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 3934;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 3992;
     }
   }
   // Damages between 20k - 25k
   else if (damages > 20000 && damages <= 25000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 4317;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 4381;
     }
   }
   // Damages between 25k - 30k
   else if (damages > 25000) {
-    if (date == "17") {
+    if (date === "17") {
       value = 4762;
-    } else if (date == "18") {
+    } else if (date === "18") {
       value = 4833;
     }
   }
@@ -347,7 +425,7 @@ function ni(damages) {
     document.querySelector("#alert").innerHTML = "";
   }
   // apply relevant scale reduction if pre-litigation checked. 
-  if (stage == "pre") {
+  if (stage === "pre") {
     if (damages <= 5000) {
       value = ((value / 3) * 2);
     } else if (damages > 5000) {
@@ -356,6 +434,10 @@ function ni(damages) {
   }
   return total(value);
 }
+
+  // let decimals = document.querySelector('#damages').value;
+  // console.log(decimals); 
+// }
 
 // FUNCTION TO DISPLAY NET,VAT,GROSS AMOUNTS 
 function total(value) {
@@ -366,8 +448,3 @@ function total(value) {
   document.querySelector("#vat").innerHTML = `VAT: £${vat}`;
   document.querySelector("#gross").innerHTML = `Gross Profit Costs: £${gross.toFixed(2)}`;
 }
-// add event listener for whole of doc to be loaded
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('#jurisdiction').onchange = jurisdiction;
-  document.querySelector('button').onclick = calculate; });
-
